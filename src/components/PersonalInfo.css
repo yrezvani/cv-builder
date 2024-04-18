@@ -1,0 +1,30 @@
+.form-heading {
+    margin-bottom: 0.2rem;
+    padding-left: 0.3rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.3rem;
+    max-width: 350px;
+    font-size: 0.9rem;
+}
+
+input {
+    border-radius: 5px;
+    padding: 3px;
+}
+
+@media (max-width: 640px) {
+    .personal-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input-group {
+        max-width: 400px;
+    }
+}
