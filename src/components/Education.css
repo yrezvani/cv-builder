@@ -1,0 +1,10 @@
+.education-wrapper {
+    max-width: 450px;
+    margin: 1rem;
+}
+
+.education-entry {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px;
+}

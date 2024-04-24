@@ -3,15 +3,7 @@ import './Education.css';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Education() {
-    const [education, setEducation] = useState([
-        {
-            id: '',
-            school: '',
-            degree: '',
-            from: '',
-            to: '',
-        },
-    ]);
+    const [education, setEducation] = useState([]);
 
     const [newEducation, setNewEducation] = useState({
         school: '',
@@ -30,17 +22,33 @@ export default function Education() {
     function addEducation() {
         setEducation((prevEducation) => [...prevEducation, { ...newEducation, id: uuidv4() }]);
         setNewEducation({ school: '', degree: '', from: '', to: '' });
+        document.getElementById('school').value = '';
+        document.getElementById('degree').value = '';
+        document.getElementById('from').value = '';
+        document.getElementById('to').value = '';
+    }
+
+    function delEducation(id) {
+        setEducation((prevEducation) => prevEducation.filter((edu) => edu.id !== id));
     }
 
     return (
         <div className="education-wrapper">
+            <h2 className="form-heading">Education</h2>
             {education.map((edu, index) => (
-                <div key={edu.id}>
+                <div className="education-entry" key={edu.id}>
                     <div className="school-name">{edu.school}</div>
+                    <button
+                        className="delete-btn"
+                        onClick={(event) => {
+                            event.preventDefault();
+                            delEducation(edu.id);
+                        }}>
+                        Delete
+                    </button>
                 </div>
             ))}
             <form className="education-form" action="">
-                <h2 className="form-heading">Education</h2>
                 <div className="input-group">
                     <label htmlFor="school">School</label>
                     <input
