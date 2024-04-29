@@ -2,90 +2,56 @@ import React, { useState } from 'react';
 import './Education.css';
 import { v4 as uuidv4 } from 'uuid';
 
-export default function Education() {
-    const [education, setEducation] = useState([]);
-
-    const [newEducation, setNewEducation] = useState({
-        school: '',
-        degree: '',
-        from: '',
-        to: '',
-    });
-
-    function handleInputChange(field, value) {
-        setNewEducation((prev) => ({
-            ...prev,
-            [field]: value,
-        }));
-    }
-
-    function addEducation() {
-        setEducation((prevEducation) => [...prevEducation, { ...newEducation, id: uuidv4() }]);
-        setNewEducation({ school: '', degree: '', from: '', to: '' });
-        document.getElementById('school').value = '';
-        document.getElementById('degree').value = '';
-        document.getElementById('from').value = '';
-        document.getElementById('to').value = '';
-    }
-
-    function delEducation(id) {
-        setEducation((prevEducation) => prevEducation.filter((edu) => edu.id !== id));
-    }
-
+export default function Education({ educationInfo, addEducationEntry, updateEducationEntry, deleteEducationEntry }) {
     return (
         <div className="education-wrapper">
             <h2 className="form-heading">Education</h2>
-            {education.map((edu, index) => (
-                <div className="education-entry" key={edu.id}>
-                    <div className="school-name">{edu.school}</div>
-                    <button
-                        className="delete-btn"
-                        onClick={(event) => {
-                            event.preventDefault();
-                            delEducation(edu.id);
-                        }}>
+            {educationInfo.map((edu) => (
+                <form className="education-entry" key={edu.id}>
+                    <div className="input-group">
+                        <label htmlFor={`school-${edu.id}`}>School</label>
+                        <input
+                            type="text"
+                            id={`school-${edu.id}`}
+                            value={edu.school}
+                            onChange={(event) => updateEducationEntry(edu.id, 'school', event.target.value)}
+                        />
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor={`degree-${edu.id}`}>Degree</label>
+                        <input
+                            type="text"
+                            id={`degree-${edu.id}`}
+                            value={edu.degree}
+                            onChange={(event) => updateEducationEntry(edu.id, 'degree', event.target.value)}
+                        />
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor={`from-${edu.id}`}>From</label>
+                        <input
+                            type="date"
+                            id={`from-${edu.id}`}
+                            value={edu.from}
+                            onChange={(event) => updateEducationEntry(edu.id, 'from', event.target.value)}
+                        />
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor={`to-${edu.id}`}>To</label>
+                        <input
+                            type="date"
+                            id={`to-${edu.id}`}
+                            value={edu.to}
+                            onChange={(event) => updateEducationEntry(edu.id, 'to', event.target.value)}
+                        />
+                    </div>
+                    <button type="button" onClick={() => deleteEducationEntry(edu.id)} className="delete-btn">
                         Delete
                     </button>
-                </div>
+                </form>
             ))}
-            <form className="education-form" action="">
-                <div className="input-group">
-                    <label htmlFor="school">School</label>
-                    <input
-                        type="text"
-                        id="school"
-                        onChange={(event) => handleInputChange('school', event.target.value)}
-                    />
-                </div>
-                <div className="input-group">
-                    <label htmlFor="degree">Degree</label>
-                    <input
-                        type="text"
-                        id="degree"
-                        onChange={(event) => handleInputChange('degree', event.target.value)}
-                    />
-                </div>
-                <div className="input-group">
-                    <label htmlFor="from">From</label>
-                    <input type="date" id="from" onChange={(event) => handleInputChange('from', event.target.value)} />
-                </div>
-                <div className="input-group">
-                    <label htmlFor="to">To</label>
-                    <input type="date" id="to" onChange={(event) => handleInputChange('to', event.target.value)} />
-                </div>
-                <button
-                    type="button"
-                    onClick={(event) => {
-                        event.preventDefault();
-                        addEducation();
-                    }}>
-                    Add Education
-                </button>
-            </form>
-
-            <div>
-                {newEducation.school} {newEducation.degree} {newEducation.from} {newEducation.to}
-            </div>
+            <button type="button" onClick={addEducationEntry}>
+                Add New Education
+            </button>
         </div>
     );
 }

@@ -5,6 +5,16 @@
 
 .education-entry {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     padding: 3px;
+}
+
+.delete-btn {
+    max-width: 80px;
+    border-radius: 5px;
+}
+
+.delete-btn:hover {
+    background-color: red;
 }

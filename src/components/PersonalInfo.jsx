@@ -1,52 +1,48 @@
 import React, { useState } from 'react';
 import './PersonalInfo.css';
 
-export default function PersonalInfo() {
-    const [personalInfo, setPersonalInfo] = useState({
-        firstName: '',
-        lastName: '',
-        position: '',
-        emailAddress: '',
-        phoneNumber: '',
-    });
-
+export default function PersonalInfo({ personalInfo, onPersonalInfoChange }) {
     function handleChange(event, stateKey) {
         if (stateKey === 'FName') {
             const newFirstName = event.target.value;
-            setPersonalInfo({ ...personalInfo, firstName: newFirstName });
+            onPersonalInfoChange({ ...personalInfo, firstName: newFirstName });
         } else if (stateKey === 'LName') {
             const newLastName = event.target.value;
-            setPersonalInfo({ ...personalInfo, lastName: newLastName });
+            onPersonalInfoChange({ ...personalInfo, lastName: newLastName });
         } else if (stateKey === 'position') {
             const newPosition = event.target.value;
-            setPersonalInfo({ ...personalInfo, position: newPosition });
+            onPersonalInfoChange({ ...personalInfo, position: newPosition });
         } else if (stateKey === 'email') {
             const newEmail = event.target.value;
-            setPersonalInfo({ ...personalInfo, emailAddress: newEmail });
+            onPersonalInfoChange({ ...personalInfo, emailAddress: newEmail });
         } else if (stateKey === 'phone') {
             const newPhone = event.target.value;
-            setPersonalInfo({ ...personalInfo, phoneNumber: newPhone });
+            onPersonalInfoChange({ ...personalInfo, phoneNumber: newPhone });
         }
     }
+
+    function displayInfo() {}
 
     return (
         <div className="personal-wrapper">
             <form className="personal-form" action="">
                 <h2 className="form-heading">Personal Information</h2>
                 <div className="input-group">
-                    <label htmlFor="first-name">First name</label>
+                    <label htmlFor="firstName">First name</label>
                     <input
                         type="text"
-                        id="first-name"
+                        id="firstName"
+                        name="firstName"
                         value={personalInfo.firstName}
                         onChange={(event) => handleChange(event, 'FName')}
                     />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="last-name">Last name</label>
+                    <label htmlFor="lastName">Last name</label>
                     <input
                         type="text"
-                        id="last-name"
+                        id="lastName"
+                        name="lastName"
                         value={personalInfo.lastName}
                         onChange={(event) => handleChange(event, 'LName')}
                     />
@@ -56,6 +52,7 @@ export default function PersonalInfo() {
                     <input
                         type="text"
                         id="position"
+                        name="position"
                         value={personalInfo.position}
                         onChange={(event) => handleChange(event, 'position')}
                     />
@@ -65,15 +62,17 @@ export default function PersonalInfo() {
                     <input
                         type="email"
                         id="email"
+                        name="email"
                         value={personalInfo.emailAddress}
                         onChange={(event) => handleChange(event, 'email')}
                     />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="phone">Phone No</label>
+                    <label htmlFor="phoneNumber">Phone No</label>
                     <input
                         type="tel"
-                        id="phone"
+                        id="phoneNumber"
+                        name="phoneNumber"
                         value={personalInfo.phoneNumber}
                         onChange={(event) => handleChange(event, 'phone')}
                     />
