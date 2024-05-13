@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid'; // Import UUID
-import Header from './components/Header';
 import PersonalInfo from './components/PersonalInfo';
 import Education from './components/Education';
 import Experience from './components/Experience';
@@ -95,28 +94,29 @@ function App() {
     return (
         <>
             <div className="wrapper">
-                <div className="left-pane">
-                    <Header />
-                    <PersonalInfo personalInfo={personalInfo} onPersonalInfoChange={handlePersonalInfoChange} />
-                    <Education
-                        educationInfo={educationInfo}
-                        addEducationEntry={addEducationEntry}
-                        updateEducationEntry={updateEducationEntry}
-                        deleteEducationEntry={deleteEducationEntry}
-                    />
-                    <Experience
-                        experienceInfo={experienceInfo}
-                        addExperienceEntry={addExperienceEntry}
-                        updateExperienceEntry={updateExperienceEntry}
-                        deleteExperienceEntry={deleteExperienceEntry}
-                    />
-                </div>
-                <div className="preview-pane">
-                    <CVPreview
-                        personalInfo={personalInfo}
-                        educationInfo={educationInfo}
-                        experienceInfo={experienceInfo}
-                    />
+                <div className="main-container">
+                    <div className="left-pane">
+                        <PersonalInfo personalInfo={personalInfo} onPersonalInfoChange={handlePersonalInfoChange} />
+                        <Education
+                            educationInfo={educationInfo}
+                            addEducationEntry={addEducationEntry}
+                            updateEducationEntry={updateEducationEntry}
+                            deleteEducationEntry={deleteEducationEntry}
+                        />
+                        <Experience
+                            experienceInfo={experienceInfo}
+                            addExperienceEntry={addExperienceEntry}
+                            updateExperienceEntry={updateExperienceEntry}
+                            deleteExperienceEntry={deleteExperienceEntry}
+                        />
+                    </div>
+                    <div className="preview-pane">
+                        <CVPreview
+                            personalInfo={personalInfo}
+                            educationInfo={educationInfo}
+                            experienceInfo={experienceInfo}
+                        />
+                    </div>
                 </div>
             </div>
         </>

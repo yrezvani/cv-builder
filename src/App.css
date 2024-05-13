@@ -1,6 +1,17 @@
-.wrapper {
+body {
+    background-color: #eae5e5;
+}
+.main-container {
     display: flex;
     gap: 15px;
+    margin-right: 25px;
+}
+
+.header {
+    padding: 0 20px;
+    font-size: 1.7rem;
+    margin-top: 3rem;
+    margin-bottom: 0;
 }
 
 .preview-pane {

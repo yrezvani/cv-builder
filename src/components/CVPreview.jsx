@@ -13,27 +13,31 @@ export default function CVPreview({ personalInfo, educationInfo, experienceInfo 
                 <p>{personalInfo.phoneNumber}</p>
             </div>
             <div className="education-prev">
-                <h1>Education</h1>
+                <h1 className="edu-prev-header">Education</h1>
                 {educationInfo.map((edu, index) => (
                     <div key={index}>
-                        <h3>{edu.school}</h3>
-                        <p>{edu.degree}</p>
-                        <p>
-                            {edu.from} - {edu.to}
-                        </p>
+                        <div className="edu-prev-content">
+                            <p>
+                                {edu.from} - {edu.to}
+                            </p>
+                            <p className="school-name">{edu.school}</p>
+                            <p>{edu.degree}</p>
+                        </div>
                     </div>
                 ))}
             </div>
             <div className="experience-prev">
-                <h1>Experience</h1>
+                <h1 className="exp-prev-header">Experience</h1>
                 {experienceInfo.map((exp, index) => (
                     <div key={index}>
-                        <h3>{exp.company}</h3>
-                        <p>{exp.position}</p>
-                        <p>{exp.location}</p>
-                        <p>
-                            {exp.from} - {exp.to}
-                        </p>
+                        <div className="exp-prev-content">
+                            <p>
+                                {exp.from} - {exp.to}
+                            </p>
+                            <p className="company-name">{exp.company}</p>
+                            <p>{exp.location}</p>
+                            <p>{exp.position}</p>
+                        </div>
                     </div>
                 ))}
             </div>
