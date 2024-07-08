@@ -15,13 +15,15 @@ function App() {
         phoneNumber: '0765463726',
     });
 
+    const today = new Date().toISOString().split('T')[0];
+
     const [educationInfo, setEducationInfo] = useState([
         {
             id: uuidv4(),
             school: 'Harvard',
             degree: 'Computer Science',
-            from: 'September 2014',
-            to: 'Now',
+            from: '2018-09-01',
+            to: today,
         },
     ]);
 
@@ -55,8 +57,8 @@ function App() {
             id: uuidv4(),
             company: 'Tiktok',
             position: 'Frontend Developer',
-            from: 'September 2018',
-            to: 'Now',
+            from: '2018-09-01',
+            to: today,
             location: 'San Francisco',
         },
     ]);
@@ -74,7 +76,7 @@ function App() {
     };
 
     const updateExperienceEntry = (id, field, value) => {
-        const updatedInfo = experienceInfo.map((edu) => {
+        const updatedInfo = experienceInfo.map((exp) => {
             if (exp.id === id) {
                 return { ...exp, [field]: value };
             }
